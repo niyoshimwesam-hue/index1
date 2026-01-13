@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit | Elite Fitness Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d4ff; /* Electric Blue */
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-light: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background: var(--dark-bg); color: var(--text-light); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+
+        /* Navigation */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: rgba(0,0,0,0.95);
+            position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #333;
+        }
+        .logo { font-size: 1.8rem; font-weight: 700; color: white; text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
+        }
+        .hero h1 { font-size: 5rem; letter-spacing: 5px; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; }
+        .btn-primary {
+            background: var(--primary); color: black; padding: 15px 40px;
+            text-decoration: none; font-weight: bold; border-radius: 50px;
+            transition: var(--transition);
+        }
+        .btn-primary:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary); }
+
+        /* Features Section */
+        .section { padding: 80px 8%; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: var(--card-bg); padding: 40px; border-radius: 10px; border-bottom: 4px solid transparent; transition: var(--transition); }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .card h3 { color: var(--primary); margin-bottom: 15px; }
+
+        /* Interactive Calculator */
+        .calc-box { background: #111; padding: 50px; border-radius: 20px; max-width: 700px; margin: 0 auto; }
+        input[type=range] { width: 100%; margin: 20px 0; accent-color: var(--primary); }
+        .price-tag { font-size: 3rem; font-weight: bold; color: var(--primary); }
+
+        /* Contact Form */
+        form { display: flex; flex-direction: column; max-width: 500px; margin: 0 auto; gap: 15px; }
+        input, textarea { padding: 15px; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
+        button[type=submit] { background: var(--primary); border: none; padding: 15px; font-weight: bold; cursor: pointer; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid #333; margin-top: 50px; color: #777; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">GYM<span>FIT</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#membership">Join</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <h1>NO EXCUSES</h1>
+        <p>Join the most advanced fitness community in the city. Professional trainers, 24/7 access, and results-driven programs.</p>
+        <a href="#membership" class="btn-primary">START TODAY</a>
+    </header>
+
+    <section id="services" class="section">
+        <h2>Our Services</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Weight Lifting</h3>
+                <p>Modern equipment and power racks for all levels.</p>
+            </div>
+            <div class="card">
+                <h3>Cardio Zone</h3>
+                <p>High-end treadmills, bikes, and rowing machines.</p>
+            </div>
+            <div class="card">
+                <h3>Yoga & Core</h3>
+                <p>Guided sessions to improve flexibility and balance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="membership" class="section" style="background: #050505;">
+        <h2>Membership Pricing</h2>
+        <p>Slide to choose your commitment length</p>
+        <div class="calc-box">
+            <input type="range" id="months" min="1" max="12" value="1">
+            <p><span id="monthVal">1</span> Month(s)</p>
+            <div class="price-tag">$<span id="price">49</span></div>
+            <p id="savings" style="color: #888; margin-top: 10px;"></p>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Get a Free Pass</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <textarea placeholder="Your Fitness Goals" rows="4"></textarea>
+            <button type="submit">SEND REQUEST</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 GymFit International. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Membership Calculator Logic
+        const slider = document.getElementById('months');
+        const monthVal = document.getElementById('monthVal');
+        const priceDisp = document.getElementById('price');
+        const savingsDisp = document.getElementById('savings');
+
+        slider.oninput = function() {
+            let months = this.value;
+            let basePrice = 49;
+            monthVal.innerHTML = months;
+
+            if (months >= 12) {
+                priceDisp.innerHTML = Math.floor(basePrice * months * 0.7); // 30% off
+                savingsDisp.innerHTML = "Annual Discount Applied: 30% Off!";
+            } else if (months >= 6) {
+                priceDisp.innerHTML = Math.floor(basePrice * months * 0.85); // 15% off
+                savingsDisp.innerHTML = "Semi-Annual Discount Applied: 15% Off!";
+            } else {
+                priceDisp.innerHTML = basePrice * months;
+                savingsDisp.innerHTML = "Standard Monthly Rate";
+            }
+        }
+
+        // Form Handling
+        document.getElementById('contactForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert("Thank you! Your free pass has been sent to your email.");
+            this.reset();
+        }
+    </script>
+</body>
+</html>
